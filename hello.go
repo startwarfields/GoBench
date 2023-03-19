@@ -7,26 +7,49 @@ import (
 	"os"
 	"reflect"
 	"strconv"
+	"time"
+	"unicode/utf8"
 )
-var p1 = fmt.Println
+var pl = fmt.Println
 
 func main() {
   // Example code from tutorial https://www.youtube.com/watch?v=YzLrWHZa-Kc
+  mathme()
+
+}
+func mathme() {
+
+  pl("5 + 4 =", 5+4)
+}
+
+func timeme() {
+
+  now := time.Now()
+  pl(now.Year(), now.Month(), now.Day())
+  pl(now.Hour(), now.Minute(), now.Second())
+}
+
+func loopme() {
+  rStr := "abcdefg"
+  pl("Rune Count :", utf8.RuneCountInString(rStr))
+  for i, runeVal := range rStr {
+    fmt.Printf("%d : %#U : %c\n", i, runeVal, runeVal)
   }
+}
 func Convert() {
   cv3:= "5000000"
   cv4, err := strconv.Atoi(cv3)
-  p1(cv4, err, reflect.TypeOf(cv4))
+  pl(cv4, err, reflect.TypeOf(cv4))
  
 }
 func Greet() {
   fmt.Println("Hello!")
-  p1("What is your name?")
+  pl("What is your name?")
   reader := bufio.NewReader(os.Stdin)
   name, err := reader.ReadString('\n')
 
   if err == nil {
-    p1("Hello", name)
+    pl("Hello", name)
   } else {
     log.Fatal(err)
   }
@@ -34,10 +57,10 @@ func Greet() {
 func AgeBirthday() {
   iAge := 8
   if (iAge >=1) && (iAge <18) {
-    p1("Important Birthday")
+    pl("Important Birthday")
   } else if (iAge == 21) || (iAge == 50) {
-    p1("Important Birthday")
+    pl("Important Birthday")
   }  else {
-    p1("Not an important birthday")
+    pl("Not an important birthday")
   }
 }
